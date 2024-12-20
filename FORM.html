@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Northwind Group Annual Meeting 2024</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .logo-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #003366; /* Navy blue color */
+            font-family: "Georgia", serif; /* Serif font to match a professional look */
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .hidden-link {
+            display: none;
+            margin-top: 20px;
+        }
+        button {
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-text">Northwind Group</div>
+    <h1>Northwind Group Annual Meeting 2024</h1>
+    <p>Please enter your name and email address to view the recording</p>
+
+    <!-- Use your Formspree form URL -->
+    <form id="userForm" method="POST" action="https://formspree.io/f/xvggppwb">
+        <label for="name">Name:</label>
+        <br>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <label for="email">Email:</label>
+        <br>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="hidden-link" id="hiddenLink">
+        <p>Thank you! Here is the recording:</p>
+        <a href="https://northwindgroupoffice-my.sharepoint.com/personal/gabe_northwind-group_com/_layouts/15/stream.aspx?id=%2Fpersonal%2Fgabe%5Fnorthwind%2Dgroup%5Fcom%2FDocuments%2FVideos%2FClipchamp%2FNorthwind%20Group%20Annual%20Meeting%202024%2FExports%2FNorthwind%20Group%20Annual%20Meeting%202024%2Emp4&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0&ga=1&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E184f77c8%2D95ef%2D48a1%2D96ba%2Db8571fa9b9c8" 
+           target="_blank">View the Recording</a>
+    </div>
+
+    <script>
+        const form = document.getElementById('userForm');
+        const hiddenLink = document.getElementById('hiddenLink');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission to reveal the link immediately
+            
+            // After sending the form data, display the recording link
+            hiddenLink.style.display = 'block';
+
+            // Actually send the form data to Formspree
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    console.log("Form successfully sent!");
+                } else {
+                    console.error("There was an error sending the form.");
+                }
+            }).catch(error => console.error("Error:", error));
+        });
+    </script>
+</body>
+</html>
